@@ -2,11 +2,12 @@
 
 name: CI
 
-# Controls when the workflow will run
+# Controls when the workflow will run (event triggers) 
 on:
   # Triggers the workflow on push or pull request events but only for the "main" branch
-  push:
+  push: # if want to push to any branch, just say push remove the branch stuff below. 
     branches: [ "main" ]
+  # Will only be triggered if pull_request created only to "main"
   pull_request:
     branches: [ "main" ]
 
@@ -16,14 +17,14 @@ on:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
-  build:
+  build: # this work flow only has one job: build
     # The type of runner that the job will run on
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest #specifying the operating system. Can set up multiple operating syste 
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v3 # this is linking to a github repository
 
       # Runs a single command using the runners shell
       - name: Run a one-line script
@@ -31,6 +32,6 @@ jobs:
 
       # Runs a set of commands using the runners shell
       - name: Run a multi-line script
-        run: |
+        run: | #run more than one line e.g. install python, "\n" install poetry
           echo Add other actions to build,
           echo test, and deploy your project.
